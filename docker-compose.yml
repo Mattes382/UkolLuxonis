@@ -1,0 +1,35 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: sreality
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  scraper:
+    build:
+      context: ./
+      dockerfile: ./sreality_scraper/Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgresql://postgres:yourpassword@postgres:5432/sreality
+      LOG_LEVEL: DEBUG
+
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - scraper
+
+    volumes:
+      - ./templates:/app/templates
+      - ./index.html:/app/index.html
+
+volumes:
+  pg_data:

@@ -1,0 +1,30 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SReality Scraper</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="py-4">SReality Scraper</h1>
+        <div class="row" id="items-list">
+            {% for item in data %}
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="card rounded mb-3">
+                    <img src="{{ item[1] }}" class="card-img-top" alt="{{ item[0] }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item[0] }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript (Optional, only needed if you use Bootstrap components) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
