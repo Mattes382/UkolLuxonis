@@ -1,5 +1,4 @@
 scrapy
 requests
-flask
 psycopg2
 urllib3<2.0
