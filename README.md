@@ -6,4 +6,4 @@ Use scrapy framework to scrape the first 500 items (title, image url) from sreal
 ```
 docker-compose up
 ```
-2) Navigujte v prohlížeči na adresu http://127.0.0.1:8080
+2) Po dokončení inicilizace všech kontejnerů navigujte v prohlížeči na adresu http://127.0.0.1:8080
