@@ -1,3 +1,5 @@
+import time
+
 import psycopg2
 # Define your item pipelines here
 #
@@ -13,18 +15,26 @@ from psycopg2 import OperationalError
 # SrealityScraperPipeline
 class PostgresPipeline:
     def open_spider(self, spider):
-        try:
-            self.connection = psycopg2.connect(
-                host="postgres",
-                port="5432",
-                user="postgres",
-                password="yourpassword",
-                database="sreality"
-            )
-            self.cursor = self.connection.cursor()
-        except OperationalError as e:
-            print("Error connecting to PostgreSQL:", e)
-            raise e
+        retries = 5
+        retry_delay = 5
+
+        for _ in range(retries):
+            try:
+                self.connection = psycopg2.connect(
+                    host="postgres",
+                    port="5432",
+                    user="postgres",
+                    password="yourpassword",
+                    database="sreality"
+                )
+                self.cursor = self.connection.cursor()
+                print("Successfully connected to PostgreSQL.")
+                return
+            except OperationalError as e:
+                print("Error connecting to PostgreSQL:", e)
+                time.sleep(retry_delay)
+
+        raise Exception("Failed to establish connection to PostgreSQL after multiple retries.")
 
     def close_spider(self, spider):
         self.connection.close()

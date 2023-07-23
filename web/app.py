@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 def get_data_from_database():
     connection = psycopg2.connect(
-        host="postgres",  # This will be the hostname of the PostgreSQL service in the Docker Compose network
+        host="postgres",
         port=5432,
         user="postgres",
         password="yourpassword",

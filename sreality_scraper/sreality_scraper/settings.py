@@ -16,11 +16,6 @@ ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
-POSTGRES_HOST = "172.18.0.2"
-POSTGRES_PORT = 5432
-POSTGRES_USER = "postgres"
-POSTGRES_PASSWORD = "yourpassword"
-POSTGRES_DB = "sreality"
 
 # Configure item pipelines
 ITEM_PIPELINES = {

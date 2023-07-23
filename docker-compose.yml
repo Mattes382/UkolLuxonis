@@ -11,9 +11,7 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   scraper:
-    build:
-      context: ./
-      dockerfile: ./sreality_scraper/Dockerfile
+    build: ./sreality_scraper
     depends_on:
       - postgres
     environment:
@@ -21,15 +19,11 @@ services:
       LOG_LEVEL: DEBUG
 
   web:
-    build: .
+    build: ./web
     ports:
       - "8080:8080"
     depends_on:
       - scraper
-
-    volumes:
-      - ./templates:/app/templates
-      - ./index.html:/app/index.html
 
 volumes:
   pg_data:
