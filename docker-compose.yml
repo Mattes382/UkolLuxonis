@@ -21,7 +21,7 @@ services:
   web:
     build: ./web
     ports:
-      - "8080:8080"
+      - "10002:10002"
     depends_on:
       - scraper
 
